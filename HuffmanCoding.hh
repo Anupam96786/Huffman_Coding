@@ -22,3 +22,33 @@ public:
         one = NULL;
     }
 };
+
+class HuffmanCoding
+{
+private:
+    HCNode *root;
+
+public:
+    HuffmanCoding()
+    {
+        root = new HCNode('\0');
+    }
+
+    ~HuffmanCoding()
+    {
+        queue<HCNode *> q;
+        q.push(root);
+        while (!q.empty())
+        {
+            HCNode *tempNode;
+            tempNode = q.front();
+            if (tempNode->zero)
+                q.push(tempNode->zero);
+            if (tempNode->one)
+                q.push(tempNode->one);
+            q.pop();
+            delete tempNode;
+        }
+    }
+};
+
