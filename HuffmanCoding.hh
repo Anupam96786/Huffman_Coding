@@ -28,7 +28,6 @@ public:
 class HuffmanCoding
 {
 private:
-    HCNode *root;
     string encodedString;
     unordered_map<char, string> encodeTable;
     unordered_map<string, char> decodeTable;
@@ -44,7 +43,7 @@ private:
     };
 
     // function to delete the huffman coding tree or root
-    void deleteTree()
+    void deleteTree(HCNode *root)
     {
         if (root == NULL)
             return;
@@ -93,22 +92,12 @@ private:
     }
 
     // function to generate encode and decode table
-    void generateEncodeDecodeTable()
+    void generateEncodeDecodeTable(HCNode *root)
     {
         generateEncodeDecodeTableTemp(root, "");
     }
 
 public:
-    HuffmanCoding()
-    {
-        root = NULL;
-    }
-
-    ~HuffmanCoding()
-    {
-        deleteTree();
-    }
-
     string encode(string s)
     {
         if (s.size() == 0)
@@ -144,9 +133,10 @@ public:
                 nodeQueue.pop();
                 nodeQueue.push(joinNode(zero, one));
             }
-            root = nodeQueue.top();
+            HCNode *root = nodeQueue.top();
             nodeQueue.pop();
-            generateEncodeDecodeTable();
+            generateEncodeDecodeTable(root);
+            deleteTree(root);
             for (int i = 0; i < s.size(); i++)
             {
                 encodedString.append(encodeTable[s[i]]);
