@@ -182,4 +182,10 @@ public:
         encodeTable.clear();
         decodeTable.clear();
     }
+
+    // function to return decodeTable
+    unordered_map<string, char> getDecodeTable()
+    {
+        return decodeTable;
+    }
 };
