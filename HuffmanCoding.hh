@@ -42,7 +42,7 @@ private:
         }
     };
 
-    // function to delete the huffman coding tree or root
+    // function to delete the huffman tree or root
     void deleteTree(HCNode *root)
     {
         if (root == NULL)
@@ -107,7 +107,7 @@ public:
         {
             charCount[s[i]]++;
         }
-        priority_queue<HCNode *, vector<HCNode *>, Compare> nodeQueue;
+        priority_queue<HCNode *, vector<HCNode *>, Compare> nodeQueue; // creating the min priority queue
         for (auto i : charCount)
         {
             // datatype of i is pair
@@ -115,6 +115,8 @@ public:
             // i.second contains count of that character
             nodeQueue.push(new HCNode(i.first, i.second));
         }
+
+        // if the string has only one type of character then just return 0's according to the number of character
         if (nodeQueue.size() == 1)
         {
             for (int i = 0; i < nodeQueue.top()->charCount; i++)
@@ -123,6 +125,10 @@ public:
             nodeQueue.pop();
             delete temp;
         }
+
+        // if there is multiple types of character then
+        // - create huffman tree
+        // - generate encode and decode table
         else
         {
             while (nodeQueue.size() != 1)
@@ -138,9 +144,7 @@ public:
             generateEncodeDecodeTable(root);
             deleteTree(root);
             for (int i = 0; i < s.size(); i++)
-            {
                 encodedString.append(encodeTable[s[i]]);
-            }
         }
         return encodedString;
     }
