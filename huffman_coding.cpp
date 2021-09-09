@@ -10,8 +10,10 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    HuffmanCoding hc;
-    string encodedString =  hc.encode("appddd");
+    HuffmanCoding hc1, hc2;
+    string encodedString =  hc1.encode("appddd");
     cout << encodedString << endl;
+    DecodeTable dt =  hc1.getDecodeTable();
+    cout << hc2.decode(encodedString, dt);
     return 0;
 }

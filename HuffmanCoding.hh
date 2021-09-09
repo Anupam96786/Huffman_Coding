@@ -7,6 +7,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// DecodeTable class that can be used in other files to get decodeTable using HuffmanCoding::getDecodeTable()
+class DecodeTable
+{
+private:
+    unordered_map<string, char> decodeTable;
+    DecodeTable(unordered_map<string, char> decodeTable)
+    {
+        this->decodeTable = decodeTable;
+    }
+    friend class HuffmanCoding;
+
+    // public:
+    // void operator=(DecodeTable &decodeTable)
+    // {
+
+    // }
+};
+
 // Main class for huffman coding
 class HuffmanCoding
 {
@@ -154,11 +172,12 @@ public:
 
     // function to decode the given string using given decodeTable
     // return the decoded string
-    string decode(string encodedString, unordered_map<string, char> decodeTable)
+    string decode(string encodedString, DecodeTable decodeTable)
     {
+        clear();
         string decodedString;
         int size = 1;
-        this->decodeTable = decodeTable;
+        this->decodeTable = decodeTable.decodeTable;
         while (encodedString.size() != 0)
         {
             string substr = encodedString.substr(0, size);
@@ -185,8 +204,9 @@ public:
     }
 
     // function to get decodeTable
-    unordered_map<string, char> getDecodeTable()
+    DecodeTable getDecodeTable()
     {
-        return decodeTable;
+        DecodeTable temp(decodeTable);
+        return temp;
     }
 };
