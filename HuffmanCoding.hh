@@ -101,6 +101,7 @@ public:
     // return a string of 0's and 1's
     string encode(string s)
     {
+        clear();
         string encodedString;
         if (s.size() == 0)
             return encodedString;
@@ -173,5 +174,12 @@ public:
             }
         }
         return decodedString;
+    }
+
+    // function to clear everything (ie. encodeTable, decodeTable)
+    void clear()
+    {
+        encodeTable.clear();
+        decodeTable.clear();
     }
 };
