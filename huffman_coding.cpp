@@ -11,6 +11,8 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
     HuffmanCoding hc;
-    cout << hc.encode("appddd");
+    string encodedString =  hc.encode("appddd");
+    cout << encodedString << endl;
+    cout << hc.decode(encodedString);
     return 0;
 }

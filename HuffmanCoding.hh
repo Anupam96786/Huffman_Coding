@@ -28,7 +28,6 @@ public:
 class HuffmanCoding
 {
 private:
-    string encodedString;
     unordered_map<char, string> encodeTable;
     unordered_map<string, char> decodeTable;
 
@@ -98,8 +97,11 @@ private:
     }
 
 public:
+    // function to encode the given string
+    // return a string of 0's and 1's
     string encode(string s)
     {
+        string encodedString;
         if (s.size() == 0)
             return encodedString;
         unordered_map<char, int> charCount;
@@ -147,5 +149,29 @@ public:
                 encodedString.append(encodeTable[s[i]]);
         }
         return encodedString;
+    }
+
+    // function to decode the given string
+    // return the decoded string
+    string decode(string encodedString)
+    {
+        string decodedString;
+        int size = 1;
+        while (encodedString.size() != 0)
+        {
+            string substr = encodedString.substr(0, size);
+            if (decodeTable.count(substr) > 0)
+            {
+                string s(1, decodeTable[substr]);
+                decodedString.append(s);
+                encodedString = encodedString.substr(size);
+                size = 1;
+            }
+            else
+            {
+                size++;
+            }
+        }
+        return decodedString;
     }
 };
