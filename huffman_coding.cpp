@@ -13,6 +13,5 @@ int main(int argc, char const *argv[])
     HuffmanCoding hc;
     string encodedString =  hc.encode("appddd");
     cout << encodedString << endl;
-    cout << hc.decode(encodedString);
     return 0;
 }

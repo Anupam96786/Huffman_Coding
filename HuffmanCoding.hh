@@ -7,27 +7,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Node class for huffman coding
-class HCNode
-{
-public:
-    char data;
-    int charCount;
-    HCNode *zero;
-    HCNode *one;
-    HCNode(char data, int count)
-    {
-        this->data = data;
-        charCount = count;
-        zero = NULL;
-        one = NULL;
-    }
-};
-
 // Main class for huffman coding
 class HuffmanCoding
 {
 private:
+    // Node class for huffman coding
+    class HCNode
+    {
+    public:
+        char data;
+        int charCount;
+        HCNode *zero;
+        HCNode *one;
+        HCNode(char data, int count)
+        {
+            this->data = data;
+            charCount = count;
+            zero = NULL;
+            one = NULL;
+        }
+    };
+
     unordered_map<char, string> encodeTable;
     unordered_map<string, char> decodeTable;
 
@@ -152,18 +152,19 @@ public:
         return encodedString;
     }
 
-    // function to decode the given string
+    // function to decode the given string using given decodeTable
     // return the decoded string
-    string decode(string encodedString)
+    string decode(string encodedString, unordered_map<string, char> decodeTable)
     {
         string decodedString;
         int size = 1;
+        this->decodeTable = decodeTable;
         while (encodedString.size() != 0)
         {
             string substr = encodedString.substr(0, size);
-            if (decodeTable.count(substr) > 0)
+            if (this->decodeTable.count(substr) > 0)
             {
-                string s(1, decodeTable[substr]);
+                string s(1, this->decodeTable[substr]);
                 decodedString.append(s);
                 encodedString = encodedString.substr(size);
                 size = 1;
@@ -183,7 +184,7 @@ public:
         decodeTable.clear();
     }
 
-    // function to return decodeTable
+    // function to get decodeTable
     unordered_map<string, char> getDecodeTable()
     {
         return decodeTable;
