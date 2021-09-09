@@ -8,6 +8,6 @@ This project is designed to **encode** and **decode** strings. **Huffman coding*
 
 ## Usage
 
-Download this project and copy the HuffmanCoding.hh file in your working directory.
+Download this project and copy the **HuffmanCoding.hh** file in your working directory.
 
 [Click Here](https://github.com/Anupam96786/Huffman_Coding/blob/master/huffman_coding_usage.cpp) to check the usage file.
